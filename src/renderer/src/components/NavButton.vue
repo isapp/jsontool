@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import BaseButton, { BaseButtonProps } from './BaseButton.vue'
 import { useRoute, useRouter } from 'vue-router'
+import { Route } from '../enums/routes'
 
 interface NavButtonProps extends BaseButtonProps {
-  to: string
+  to: Route
 }
 
 const router = useRouter()

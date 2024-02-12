@@ -7,6 +7,7 @@ import App from './App.vue'
 import Home from './views/Home.vue'
 import JSONPathDebugger from './views/JSONPathDebugger.vue'
 import JSONBeautify from './views/JSONBeautify.vue'
+import { Route } from './enums/routes'
 
 declare global {
   interface Window {
@@ -18,9 +19,9 @@ const app = createApp(App)
 const pinia = createPinia()
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/json-path', component: JSONPathDebugger },
-  { path: '/json-beautify', component: JSONBeautify }
+  { path: Route.Home, component: Home },
+  { path: Route.JsonPath, component: JSONPathDebugger },
+  { path: Route.JsonBeautify, component: JSONBeautify }
 ]
 
 const router = createRouter({

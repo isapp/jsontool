@@ -63,7 +63,7 @@ const reset = () => {
     </TwoColumns>
     <FlexRow class="mt-5">
       <TextInput class="grow" @update="handleQueryUpdate" />
-      <BaseButton size="sm" @click="reset">Reset</BaseButton>
+      <BaseButton class="bg-gray-700" size="sm" @click="reset">Reset</BaseButton>
     </FlexRow>
   </Dashboard>
 </template>

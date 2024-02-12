@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavButton from './NavButton.vue'
 import Logo from './Logo.vue'
+import { Route } from '../enums/routes'
 </script>
 
 <template>
@@ -12,8 +13,8 @@ import Logo from './Logo.vue'
       <slot />
     </div>
     <div>
-      <NavButton class="mr-5" to="/json-path" size="sm">JSONPath Debugger</NavButton>
-      <NavButton class="mr-5" to="/json-beautify" size="sm">JSON Beautify</NavButton>
+      <NavButton class="mr-5" :to="Route.JsonPath" size="sm">JSONPath Debugger</NavButton>
+      <NavButton class="mr-5" :to="Route.JsonBeautify" size="sm">JSON Beautify</NavButton>
     </div>
   </div>
 </template>
