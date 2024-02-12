@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Dashboard from '../components/Dashboard.vue'
 import NavBar from '../components/NavBar.vue'
-import NavButton from '../components/NavButton.vue'
 import TwoColumns from '../components/TwoColumns.vue'
 import BorderedColumn from '../components/BorderedColumn.vue'
 import TextInput from '../components/TextInput.vue'
@@ -41,15 +40,14 @@ const handleQueryUpdate = async (updatedQuery: string) => {
 }
 
 const reset = () => {
-  appStore.$reset()
+  appStore.$resetJsonPath()
 }
 </script>
 
 <template>
   <Dashboard>
-    <NavBar class="mb-5">
+    <NavBar>
       <h1>JSONPath Debugger</h1>
-      <NavButton to="/" size="sm">Home</NavButton>
     </NavBar>
     <TwoColumns>
       <template #left>

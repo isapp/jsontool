@@ -6,6 +6,8 @@ export const useAppStore = defineStore('app', () => {
   const jsonPathQueriedContent = ref()
   const jsonPathQuery = ref()
 
+  const jsonBeautifyContent = ref()
+
   const curriedAssign = (prop: any) => (value: any) => {
     prop.value = value
   }
@@ -13,11 +15,16 @@ export const useAppStore = defineStore('app', () => {
   const setJsonPathContent = curriedAssign(jsonPathContent)
   const setJsonPathQueriedContent = curriedAssign(jsonPathQueriedContent)
   const setJsonPathQuery = curriedAssign(jsonPathQuery)
+  const setJsonBeautifyContent = curriedAssign(jsonBeautifyContent)
 
-  const $reset = () => {
+  const $resetJsonPath = () => {
     setJsonPathQueriedContent({})
     setJsonPathContent({})
     setJsonPathQuery('')
+  }
+
+  const $resetJsonBeautify = () => {
+    setJsonBeautifyContent({})
   }
 
   return {
@@ -27,6 +34,9 @@ export const useAppStore = defineStore('app', () => {
     setJsonPathQueriedContent,
     jsonPathQuery,
     setJsonPathQuery,
-    $reset
+    $resetJsonPath,
+    jsonBeautifyContent,
+    setJsonBeautifyContent,
+    $resetJsonBeautify
   }
 })

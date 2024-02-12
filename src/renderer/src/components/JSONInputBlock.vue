@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
 import JsonEditorVue from 'json-editor-vue'
-import { computed, nextTick, ref, unref, watch } from 'vue'
+import { computed, ref, unref, watch } from 'vue'
 import { nanoid } from 'nanoid'
 import { isEmptyObject } from '../utils'
 
@@ -66,7 +66,7 @@ watch(renderContent, async (v) => {
       } catch (e) {
         /* empty */
       }
-    }, 150)
+    }, 200)
   }
 })
 </script>
