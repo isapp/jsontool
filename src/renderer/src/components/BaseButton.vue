@@ -9,7 +9,7 @@ defineEmits(['click'])
 
 <template>
   <button
-    class="bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-500"
+    class="p-4 rounded-lg cursor-pointer hover:bg-gray-500"
     :class="{
       'py-2 px-4': size === 'sm',
       'p-4': size === 'md' || !size,

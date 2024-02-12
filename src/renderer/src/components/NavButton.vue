@@ -17,7 +17,11 @@ const handleClick = () => {
 </script>
 
 <template>
-  <BaseButton :class="{ 'bg-gray-500': route.path === to }" :size="size" @click="handleClick">
+  <BaseButton
+    :class="{ 'bg-gray-500': route.path === to, 'bg-gray-700': route.path !== to }"
+    :size="size"
+    @click="handleClick"
+  >
     <slot />
   </BaseButton>
 </template>
