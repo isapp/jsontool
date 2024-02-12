@@ -1,26 +1,24 @@
 <script setup lang="ts">
-type NavButtonProps = {
+import BaseButton, { BaseButtonProps } from './BaseButton.vue'
+import { useRouter } from 'vue-router'
+
+interface NavButtonProps extends BaseButtonProps {
   to: string
-  size?: 'sm' | 'md' | 'lg'
 }
-defineProps<NavButtonProps>()
+
+const router = useRouter()
+
+const props = defineProps<NavButtonProps>()
+
+const handleClick = () => {
+  router.push(props.to)
+}
 </script>
 
 <template>
-  <router-link :to="to">
-    <div
-      class="bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-500"
-      :class="{
-        'py-2 px-4': size === 'sm',
-        'p-4': size === 'md' || !size,
-        'p-8': size === 'lg'
-      }"
-    >
-      <h2 class="font-mono font-bold">
-        <slot />
-      </h2>
-    </div>
-  </router-link>
+  <BaseButton :size="size" @click="handleClick">
+    <slot />
+  </BaseButton>
 </template>
 
 <style scoped></style>

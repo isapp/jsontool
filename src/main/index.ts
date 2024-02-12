@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { jsonPath } from './jsonPath'
 
 function createWindow(): void {
   // Create the browser window.
@@ -50,6 +51,9 @@ app.whenReady().then(() => {
   })
 
   // IPC test
+  ipcMain.handle('api.query', (_event, { path, json }) => {
+    return jsonPath({ path, json })
+  })
   createWindow()
 
   app.on('activate', function () {

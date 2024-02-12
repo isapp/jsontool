@@ -5,10 +5,11 @@ import NavButton from '../components/NavButton.vue'
 import TwoColumns from '../components/TwoColumns.vue'
 import BorderedColumn from '../components/BorderedColumn.vue'
 import TextInput from '../components/TextInput.vue'
-import CodeInputBlock, { ContentUpdate } from '../components/CodeInputBlock.vue'
+import JSONInputBlock, { ContentUpdate } from '../components/JSONInputBlock.vue'
 import { computed, unref } from 'vue'
-import { JSONPath } from 'jsonpath-plus'
 import { useAppStore } from '../store'
+import FlexRow from '../components/FlexRow.vue'
+import BaseButton from '../components/BaseButton.vue'
 
 const appStore = useAppStore()
 
@@ -21,18 +22,26 @@ const handleDataUpdate = (content: ContentUpdate) => {
   appStore.setJsonPathQueriedContent({})
 }
 
-const handleQueryUpdate = (updatedQuery: string) => {
+const handleQueryUpdate = async (updatedQuery: string) => {
   appStore.setJsonPathQuery(updatedQuery)
   if (updatedQuery === '') {
     appStore.setJsonPathQueriedContent(unref(jsonContent))
   } else {
-    const parsed = JSONPath({
-      wrap: false,
-      path: unref(query),
-      json: unref(jsonContent)
-    })
-    appStore.setJsonPathQueriedContent(parsed)
+    try {
+      const parsed = await window.api.query({
+        path: unref(query),
+        json: JSON.stringify(unref(jsonContent))
+      })
+
+      appStore.setJsonPathQueriedContent(parsed)
+    } catch (e) {
+      /* empty */
+    }
   }
+}
+
+const reset = () => {
+  appStore.$reset()
 }
 </script>
 
@@ -45,16 +54,19 @@ const handleQueryUpdate = (updatedQuery: string) => {
     <TwoColumns>
       <template #left>
         <BorderedColumn>
-          <CodeInputBlock :render-content="jsonContent" @update="handleDataUpdate" />
+          <JSONInputBlock :render-content="jsonContent" @update="handleDataUpdate" />
         </BorderedColumn>
       </template>
       <template #right>
         <BorderedColumn>
-          <CodeInputBlock :read-only="true" :render-content="queriedContent" />
+          <JSONInputBlock :read-only="true" :render-content="queriedContent" />
         </BorderedColumn>
       </template>
     </TwoColumns>
-    <TextInput class="mt-5" @update="handleQueryUpdate" />
+    <FlexRow class="mt-5">
+      <TextInput class="grow" @update="handleQueryUpdate" />
+      <BaseButton size="sm" @click="reset">Reset</BaseButton>
+    </FlexRow>
   </Dashboard>
 </template>
 

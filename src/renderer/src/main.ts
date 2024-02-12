@@ -8,6 +8,12 @@ import Home from './views/Home.vue'
 import JSONPathDebugger from './views/JSONPathDebugger.vue'
 import JSONFormat from './views/JSONFormat.vue'
 
+declare global {
+  interface Window {
+    api: any
+  }
+}
+
 const app = createApp(App)
 const pinia = createPinia()
 

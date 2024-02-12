@@ -6,7 +6,7 @@ import Versions from '../components/Versions.vue'
 <template>
   <div class="flex flex-row justify-between w-1/2">
     <NavButton to="/json-path">JSONPath Debugger</NavButton>
-    <NavButton to="/json-format">JSON Formatter</NavButton>
+    <NavButton to="/json-format">JSON Beautify</NavButton>
   </div>
   <Versions />
 </template>

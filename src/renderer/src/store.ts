@@ -14,12 +14,19 @@ export const useAppStore = defineStore('app', () => {
   const setJsonPathQueriedContent = curriedAssign(jsonPathQueriedContent)
   const setJsonPathQuery = curriedAssign(jsonPathQuery)
 
+  const $reset = () => {
+    setJsonPathQueriedContent({})
+    setJsonPathContent({})
+    setJsonPathQuery('')
+  }
+
   return {
     jsonPathContent,
     setJsonPathContent,
     jsonPathQueriedContent,
     setJsonPathQueriedContent,
     jsonPathQuery,
-    setJsonPathQuery
+    setJsonPathQuery,
+    $reset
   }
 })
