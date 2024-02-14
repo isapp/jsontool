@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import { computed, unref } from 'vue'
 import Dashboard from '../components/Dashboard.vue'
 import NavBar from '../components/NavBar.vue'
 import TwoColumns from '../components/TwoColumns.vue'
 import BorderedColumn from '../components/BorderedColumn.vue'
 import TextInput from '../components/TextInput.vue'
 import JSONInputBlock, { ContentUpdate } from '../components/JSONInputBlock.vue'
-import { computed, unref } from 'vue'
 import { useAppStore } from '../store'
 import FlexRow from '../components/FlexRow.vue'
 import BaseButton from '../components/BaseButton.vue'
+import CopyToClipboard from '../components/CopyToClipboard.vue'
 
 const appStore = useAppStore()
 
@@ -42,6 +43,10 @@ const handleQueryUpdate = async (updatedQuery: string) => {
 const reset = () => {
   appStore.$resetJsonPath()
 }
+
+const handleCopy = (cb) => {
+  cb(unref(query))
+}
 </script>
 
 <template>
@@ -62,7 +67,11 @@ const reset = () => {
       </template>
     </TwoColumns>
     <FlexRow class="mt-5">
-      <TextInput class="grow" @update="handleQueryUpdate" />
+      <TextInput class="grow" @update="handleQueryUpdate">
+        <template v-if="query" #fieldInset>
+          <CopyToClipboard @copy="handleCopy" />
+        </template>
+      </TextInput>
       <BaseButton class="bg-gray-700" size="sm" @click="reset">Reset</BaseButton>
     </FlexRow>
   </Dashboard>

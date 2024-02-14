@@ -12,6 +12,7 @@ import { Route } from './enums/routes'
 declare global {
   interface Window {
     api: any
+    electron: any
   }
 }
 
