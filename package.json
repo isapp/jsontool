@@ -1,10 +1,10 @@
 {
   "name": "jsontool",
   "version": "1.0.0",
-  "description": "An Electron application with Vue and TypeScript",
+  "description": "A tool for managing Healthy Together's JSON",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "https://github.com/shiplet",
+  "homepage": "https://github.com/isapp/jsontool",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
