@@ -9,13 +9,6 @@ import JSONPathDebugger from './views/JSONPathDebugger.vue'
 import JSONBeautify from './views/JSONBeautify.vue'
 import { Route } from './enums/routes'
 
-declare global {
-  interface Window {
-    api: any
-    electron: any
-  }
-}
-
 const app = createApp(App)
 const pinia = createPinia()
 

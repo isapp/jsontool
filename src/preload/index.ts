@@ -3,7 +3,10 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  query: async ({ path, json }) => await ipcRenderer.invoke('api.query', { path, json })
+  query: async ({ path, json }) => await ipcRenderer.invoke('api.query', { path, json }),
+  getRemoteVersion: async () => await ipcRenderer.invoke('api.getRemoteVersion'),
+  parseVersion: async (version: string) => await ipcRenderer.invoke('api.parseVersion', version),
+  openLink: async (link: string) => await ipcRenderer.invoke('api.openLink', link)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

@@ -1,8 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { jsonPath } from './jsonPath'
+import { getRemoteVersion, parseVersion } from './getRemoteVersion'
 
 function createWindow(): void {
   // Create the browser window.
@@ -50,9 +51,21 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
+  // IPC handlers
   ipcMain.handle('api.query', (_event, { path, json }) => {
     return jsonPath({ path, json })
+  })
+
+  ipcMain.handle('api.getRemoteVersion', () => {
+    return getRemoteVersion()
+  })
+
+  ipcMain.handle('api.parseVersion', (_event, version) => {
+    return parseVersion(version)
+  })
+
+  ipcMain.handle('api.openLink', (_event, link) => {
+    shell.openExternal(link)
   })
   createWindow()
 
