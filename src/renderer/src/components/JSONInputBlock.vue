@@ -58,7 +58,9 @@ watch(renderContent, async (v) => {
       editor.value?.jsonEditor.select(null)
     }
 
-    await editor.value?.jsonEditor.set({ json: v })
+    if (props.readOnly) {
+      await editor.value?.jsonEditor.set({ json: v })
+    }
 
     setTimeout(() => {
       try {
